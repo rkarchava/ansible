@@ -1,8 +1,4 @@
 ---
-- name: Test Conection to my server
-  hosts: wms1.ordunet.ge
-  become: yes
-
   tasks:
 
     - name: Get disk usage
