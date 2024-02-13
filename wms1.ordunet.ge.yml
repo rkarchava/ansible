@@ -44,7 +44,7 @@
 
 
 
-    - name: Send Telegram message if any disk is over 80%
+    - name: Send Telegram message if any disk is over 70%
       uri:
         url: "https://api.telegram.org/bot6171926622:AAHmnGXEtn_n5Ly7SzIYJUJiDmEzKi0NwNY/sendMessage"
         method: POST
