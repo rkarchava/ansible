@@ -1,0 +1,72 @@
+---
+- name: Test Conection to my server
+  hosts: dvr.tvg.ge
+  become: yes
+
+  tasks:
+
+    - name: Get disk usage
+      command: df -h
+      register: disk_usage
+
+    - name: Check disk space available
+      shell: df -h / | awk 'NR==2 {print $5}'
+      register: disk_usage
+
+#dvr1.tvg.ge
+    - name: Check disk space on /dev/sdb1
+      shell: df -h /mnt/disk1 | awk 'NR==2 {print $5}'
+      register: disk_sdb1
+
+    - name: Check disk space on /dev/sdc1
+      shell: df -h /mnt/disk2 | awk 'NR==2 {print $5}'
+      register: disk_sdc1
+
+    - name: Check disk space on /dev/sdd1
+      shell: df -h /mnt/disk3 | awk 'NR==2 {print $5}'
+      register: disk_sdd1
+
+    - name: Check disk space on /dev/sde1
+      shell: df -h /mnt/disk4 | awk 'NR==2 {print $5}'
+      register: disk_sde1
+
+    - name: Check disk space on /dev/sdf1
+      shell: df -h /mnt/disk5 | awk 'NR==2 {print $5}'
+      register: disk_sdf1
+
+    - name: Check disk space on /dev/sdg1
+      shell: df -h /mnt/disk6 | awk 'NR==2 {print $5}'
+      register: disk_sdg1
+
+    - name: Check disk space on /dev/sdh1
+      shell: df -h /mnt/disk7 | awk 'NR==2 {print $5}'
+      register: disk_sdh1
+
+    - name: Check disk space on /dev/sdi1
+      shell: df -h /mnt/disk8 | awk 'NR==2 {print $5}'
+      register: disk_sdi1
+
+    - name: Check disk space on /dev/sdj1
+      shell: df -h /mnt/disk9 | awk 'NR==2 {print $5}'
+      register: disk_sdj1
+
+    - name: Check disk space on /dev/sdk1
+      shell: df -h /mnt/disk10 | awk 'NR==2 {print $5}'
+      register: disk_sdk1
+
+    - name: Check disk space on /dev/snvme0n1p1
+      shell: df -h /mnt/disk11 | awk 'NR==2 {print $5}'
+      register: disk_nvme0n1p1
+
+    - name: Send Telegram message if any disk is over 80%
+      uri:
+        url: "https://api.telegram.org/bot6171926622:AAHmnGXEtn_n5Ly7SzIYJUJiDmEzKi0NwNY/sendMessage"
+        method: POST
+        body_format: json
+        body: '{"chat_id": "-819128834", "text": "Disk space on {{ inventory_hostname }} is above 75%!"}'
+        headers:
+          Content-Type: application/json
+#      when: disk_usage.stdout[:-1]|int > 50 or disk_sdb1.stdout[:-1]|int > 50 or  disk_sdc1.stdout[:-1]|int > 50 or disk_sde1.stdout[:-1]|int > 50 or disk_sdf1.stdout[:-1]|int > 50 or disk_sdg1.stdout[:-1]|int > 50 or  disk_sdg1.stdout[:-1]|int > 50
+#      when: disk_usage.stdout[:-1]|int > 75 or disk_sdb1.stdout[:-1]|int > 75 or  disk_sdc1.stdout[:-1]|int > 75 or disk_sde1.stdout[:-1]|int > 75 or disk_sdf1.stdout[:-1]|int > 75 or disk_sdg1.stdout[:-1]|int > 75 or  disk_sdg1.stdout[:-1]|int > 75
+#      when: disk_usage.stdout[:-1]|int > 73 or disk_sdb1.stdout[:-1]|int > 73 or  disk_sdc1.stdout[:-1]|int > 73 or disk_sde1.stdout[:-1]|int > 73 or disk_sdf1.stdout[:-1]|int > 73 or disk_sdd1.stdout[:-1]|int > 73 or disk_sdg1.stdout[:-1]|int > 73
+      when: disk_usage.stdout[:-1]|int > 75 or disk_sdb1.stdout[:-1]|int > 75 or  disk_sdc1.stdout[:-1]|int > 75 or disk_sde1.stdout[:-1]|int > 75 or disk_sdf1.stdout[:-1]|int > 75 or disk_sdd1.stdout[:-1]|int > 75 or disk_sdg1.stdout[:-1]|int > 75 or disk_sdh1.stdout[:-1]|int > 75 or disk_sdi1.stdout[:-1]|int > 75 or disk_sdj1.stdout[:-1]|int > 75 or disk_sdk1.stdout[:-1]|int > 75 or isk_nvme0n1p1.stdout[:-1]|int > 75
