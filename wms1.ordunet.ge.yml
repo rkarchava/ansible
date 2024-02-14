@@ -52,6 +52,4 @@
         body: '{"chat_id": "-819128834", "text": "Disk space on {{ inventory_hostname }} is above 70%!"}'
         headers:
           Content-Type: application/json
-#      when: disk_usage.stdout[:-1]|int > 50 or disk_sdb1.stdout[:-1]|int > 50 or  disk_sdc1.stdout[:-1]|int > 50 or disk_sde1.stdout[:-1]|int > 50 or disk_sdf1.stdout[:-1]|int > 50 or disk_sdg1.stdout[:-1]|int > 50 or  disk_sdg1.stdout[:-1]|int > 50
-#      when: disk_usage.stdout[:-1]|int > 75 or disk_sdb1.stdout[:-1]|int > 75 or  disk_sdc1.stdout[:-1]|int > 75 or disk_sde1.stdout[:-1]|int > 75 or disk_sdf1.stdout[:-1]|int > 75 or disk_sdg1.stdout[:-1]|int > 75 or  disk_sdg1.stdout[:-1]|int > 75
-      when: disk_usage.stdout[:-1]|int > 73 or disk_sdb1.stdout[:-1]|int > 73 or  disk_sdc1.stdout[:-1]|int > 73 or disk_sde1.stdout[:-1]|int > 73 or disk_sdf1.stdout[:-1]|int > 73 or disk_sdd1.stdout[:-1]|int > 73 or disk_sdg1.stdout[:-1]|int > 73
+      when: disk_usage.stdout[:-1]|int > 70 or disk_sdb1.stdout[:-1]|int > 70 or  disk_sdc1.stdout[:-1]|int > 70 or disk_sde1.stdout[:-1]|int > 70 or disk_sdf1.stdout[:-1]|int > 70 or disk_sdd1.stdout[:-1]|int > 70 or disk_sdg1.stdout[:-1]|int > 70
