@@ -1,0 +1,25 @@
+---
+- name: Test Conection to my server
+  hosts: dvr1.vgs.ge
+  become: yes
+
+  tasks:
+
+    - name: Get disk usage
+      command: df -h
+      register: disk_usage
+
+    - name: Check disk space available
+      shell: df -h / | awk 'NR==2 {print $5}'
+      register: disk_usage
+
+    - name: Send Telegram message if any disk is over 70%
+      uri:
+        url: "https://api.telegram.org/bot6171926622:AAHmnGXEtn_n5Ly7SzIYJUJiDmEzKi0NwNY/sendMessage"
+        method: POST
+        body_format: json
+        body: '{"chat_id": "-819128834", "text": "Disk space on {{ inventory_hostname }} is above 70%!"}'
+        headers:
+          Content-Type: application/json
+
+      when: disk_usage.stdout[:-1]|int > 70
