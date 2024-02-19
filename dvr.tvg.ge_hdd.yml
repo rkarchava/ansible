@@ -54,7 +54,7 @@
       shell: df -h /mnt/disk10 | awk 'NR==2 {print $5}'
       register: disk_sdk1
 
-    - name: Check disk space on /dev/snvme0n1p1
+    - name: Check disk space on /dev/nvme0n1p1
       shell: df -h /mnt/disk11 | awk 'NR==2 {print $5}'
       register: disk_nvme0n1p1
 
@@ -66,4 +66,4 @@
         body: '{"chat_id": "-819128834", "text": "Disk space on {{ inventory_hostname }} is above 70%!"}'
         headers:
           Content-Type: application/json
-      when: disk_usage.stdout[:-1]|int > 70 or disk_sdb1.stdout[:-1]|int > 70 or  disk_sdc1.stdout[:-1]|int > 70 or disk_sde1.stdout[:-1]|int > 70 or disk_sdf1.stdout[:-1]|int > 70 or disk_sdd1.stdout[:-1]|int > 70 or disk_sdg1.stdout[:-1]|int > 70 or disk_sdh1.stdout[:-1]|int > 70 or disk_sdi1.stdout[:-1]|int > 70 or disk_sdj1.stdout[:-1]|int > 70 or disk_sdk1.stdout[:-1]|int > 70 or isk_nvme0n1p1.stdout[:-1]|int > 70
+      when: disk_usage.stdout[:-1]|int > 70 or disk_sdb1.stdout[:-1]|int > 70 or  disk_sdc1.stdout[:-1]|int > 70 or disk_sde1.stdout[:-1]|int > 70 or disk_sdf1.stdout[:-1]|int > 70 or disk_sdd1.stdout[:-1]|int > 70 or disk_sdg1.stdout[:-1]|int > 70 or disk_sdh1.stdout[:-1]|int > 70 or disk_sdi1.stdout[:-1]|int > 70 or disk_sdj1.stdout[:-1]|int > 70 or disk_sdk1.stdout[:-1]|int > 70 or disk_nvme0n1p1.stdout[:-1]|int > 70
