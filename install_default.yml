@@ -3,9 +3,9 @@
     hosts: new_host
     tasks:
 
-    name: Update repository index
-    apt:
-      update_cache: yes
+      -  name: Update repository index
+         apt:
+           update_cache: yes
 
       - name: ping my server
         ping:
