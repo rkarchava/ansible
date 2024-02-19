@@ -1,0 +1,31 @@
+---
+  - name: Install Default Programs
+    hosts: new_host
+    tasks:
+      - name: ping my server
+        ping:
+
+      - name: Install mc
+        apt:
+          name: mc
+          state: latest
+
+      - name: Install htop
+        package:
+          name: htop
+          state: latest
+
+      - name: Install traceroute
+        package:
+          name: traceroute
+          state: latest
+
+      - name: Install glances
+        package:
+          name: glances
+          state: latest
+
+      - name: Install curl
+        package:
+          name: curl
+          state: latest
