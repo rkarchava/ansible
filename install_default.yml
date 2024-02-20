@@ -6,13 +6,13 @@
     become: yes
     tasks:
 
-      -  name: Update repository index
-         apt:
-           update_cache: yes
-
       - name: ping my server
         ping:
 
+      -  name: Update repository index
+         apt:
+           update_cache: yes
+           
       - name: Install mc
         apt:
           name: mc
