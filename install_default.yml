@@ -3,6 +3,7 @@
 
   - name: Install Default Programs
     hosts: new_host
+    become: yes
     tasks:
 
  #     -  name: Update repository index
