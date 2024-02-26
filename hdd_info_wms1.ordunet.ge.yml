@@ -1,6 +1,6 @@
 ---
 - name: Test Conection to my server
-  hosts: wms
+  hosts: wms1.ordunet.ge
   become: yes
 
   tasks:
